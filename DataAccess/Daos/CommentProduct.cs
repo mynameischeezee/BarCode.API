@@ -9,10 +9,10 @@ namespace DataAccess.Daos
         public string Data { get; set; }
         public DateTime LeftAt { get; set; }
         public int ProductId { get; set; }
+        public virtual Product Product { get; set; }
         public int UserId { get; set; }
-        public int Rating { get; set; }
-
         public virtual User User { get; set; }
+        public int Rating { get; set; }
     }
 
     public class CommentProductConfig : IEntityTypeConfiguration<CommentProduct>

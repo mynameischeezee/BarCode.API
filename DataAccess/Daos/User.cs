@@ -4,13 +4,14 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace DataAccess.Daos
 {
-    public class User
+    public class User : AbstractDao
     {
-        public int Id { get; set; }
         public string Name { get; set; }
         public string PassHash { get; set; }
 
         public virtual ICollection<CommentProduct> Comments { get; set; }
+        public virtual ICollection<UserProduct> Scans { get; set; }
+        
     }
 
     public class UserConfig : IEntityTypeConfiguration<User>
@@ -19,9 +20,14 @@ namespace DataAccess.Daos
         {
             builder.HasKey(u => u.Id);
 
-            builder.HasMany(b => b.Comments)
+            builder.HasMany(u => u.Comments)
                 .WithOne(c => c.User)
                 .HasForeignKey(c => c.UserId)
+                .IsRequired();
+
+            builder.HasMany(u => u.Scans)
+                .WithOne(s => s.User)
+                .HasForeignKey(s => s.UserId)
                 .IsRequired();
         }
     }
