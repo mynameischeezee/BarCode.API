@@ -8,9 +8,8 @@ namespace DataAccess.Daos
     {
         public string Name { get; set; }
         public string PassHash { get; set; }
-
-        public virtual ICollection<CommentProduct> Comments { get; set; }
-        public virtual ICollection<UserProduct> Scans { get; set; }
+        
+        public virtual ICollection<Scan> Scans { get; set; }
         
     }
 
@@ -19,11 +18,6 @@ namespace DataAccess.Daos
         public void Configure(EntityTypeBuilder<User> builder)
         {
             builder.HasKey(u => u.Id);
-
-            builder.HasMany(u => u.Comments)
-                .WithOne(c => c.User)
-                .HasForeignKey(c => c.UserId)
-                .IsRequired();
 
             builder.HasMany(u => u.Scans)
                 .WithOne(s => s.User)

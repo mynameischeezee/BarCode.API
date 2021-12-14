@@ -10,9 +10,8 @@ namespace DataAccess.Daos
         public string Name { get; set; }
         public int OverallRatingSum { get; set; }
         public int CountOfRatings { get; set; }
-
-        public virtual ICollection<CommentProduct> Comments { get; set; }
-        public virtual ICollection<UserProduct> Scans { get; set; }
+        
+        public virtual ICollection<Scan> Scans { get; set; }
     }
 
     public class ProductConfig : IEntityTypeConfiguration<Product>
@@ -20,11 +19,6 @@ namespace DataAccess.Daos
         public void Configure(EntityTypeBuilder<Product> builder)
         {
             builder.HasKey(p => p.Code);
-
-            builder.HasMany(p => p.Comments)
-                .WithOne(c => c.Product)
-                .HasForeignKey(c => c.ProductId)
-                .IsRequired();
 
             builder.HasMany(p => p.Scans)
                 .WithOne(s => s.Product)
