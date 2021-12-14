@@ -6,6 +6,10 @@
 
     <ItemGroup>
         <PackageReference Include="BarCode" Version="2021.11.0" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.12">
+          <PrivateAssets>all</PrivateAssets>
+          <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
         <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
     </ItemGroup>
 

@@ -18,7 +18,7 @@ namespace DataAccess
 
         protected override void OnConfiguring(DbContextOptionsBuilder contextBuilder)
         {
-            contextBuilder.UseSqlite("jdbc:sqlite:identifier.sqlite");
+            contextBuilder.UseSqlite(@"DataSource=/Users/nazarkozhin/Desktop/barcode/BarCode.API/Barcode.db;");
         }
         #endregion
         
