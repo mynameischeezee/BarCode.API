@@ -10,16 +10,22 @@ namespace DataAccess
         public DbSet<Comment> Comments { get; set; }
         public DbSet<Scan> Scans { get; set; }
 
-        #region BeforeMigration
-        public BarcodeContext()
+        public BarcodeContext(DbContextOptions<BarcodeContext> options)
+            : base(options)
         {
             
         }
-
-        protected override void OnConfiguring(DbContextOptionsBuilder contextBuilder)
-        {
-            contextBuilder.UseSqlite(@"DataSource=/Users/nazarkozhin/Desktop/barcode/BarCode.API/Barcode.db;");
-        }
+        
+        #region BeforeMigration
+        // public BarcodeContext()
+        // {
+        //     
+        // }
+        //
+        // protected override void OnConfiguring(DbContextOptionsBuilder contextBuilder)
+        // {
+        //     contextBuilder.UseSqlite(@"DataSource=/Users/nazarkozhin/Desktop/barcode/BarCode.API/Barcode.db;");
+        // }
         #endregion
         
         protected override void OnModelCreating(ModelBuilder modelBuilder)
