@@ -1,15 +1,11 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using DataAccess;
+using DataAccess.Extentions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 
 namespace BarCodeApi
@@ -31,6 +27,17 @@ namespace BarCodeApi
             {
                 c.SwaggerDoc("v1", new OpenApiInfo {Title = "BarCodeApi", Version = "v1"});
             });
+            services.AddEf();
+            // services.AddDbContext<BarcodeContext>(options => options.UseSqlite(@"DataSource=/Users/nazarkozhin/Desktop/barcode/BarCode.API/Barcode.db;"));
+            services.Inject();
+
+            #region Database-Update (Just uncomment and run)
+
+            // var provider = services.BuildServiceProvider();
+            // var context = provider.GetService<BarcodeContext>();
+            // context.Database.Migrate();
+
+            #endregion
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -42,7 +49,6 @@ namespace BarCodeApi
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "BarCodeApi v1"));
             }
-
             app.UseHttpsRedirection();
             app.UseRouting();
 
