@@ -21,7 +21,11 @@ namespace BarCodeApi.Controllers
         {
             _logger = logger;
         }
-        
+        /// <summary>
+        /// Generates barcode image from barcode number
+        /// </summary>
+        /// <param name="barcodeNumber">Barcode value as string</param>
+        /// <returns>Barcode image: IActionResult</returns>
         [HttpGet("~/GetBarcodeImage")]
         public IActionResult GetBarcodeImage(string barcodeNumber)
         {
@@ -30,7 +34,11 @@ namespace BarCodeApi.Controllers
             var barcodeImageBinary = barcodeData.ToJpegBinaryData();
             return File(barcodeImageBinary, "image/jpeg");
         }
-
+        /// <summary>
+        /// Generates barcode value from string
+        /// </summary>
+        /// <param name="barcodeNumber">Barcode value: string</param>
+        /// <returns>Barcode value: string</returns>
         [HttpGet("~/GetBarcodeData")]
         public string GetBarcodeData(string barcodeNumber)
         {
@@ -38,12 +46,19 @@ namespace BarCodeApi.Controllers
             var barcodeData = BarcodeWriter.CreateBarcode(barcodeNumber, BarcodeEncoding.Code128);
             return barcodeData.Value;
         }
-        //TODO: Finish this method
-        //TODO: Test, if this method works with images with objects on picture, exact barcode
-        [HttpPost("~/GetBarcodeImageFromUrl")]
-        public string GetBarcodeImageFromUrl([FromBody]Bitmap url)
+        /// <summary>
+        /// Decode`s image with barcode and return it`s value
+        /// </summary>
+        /// <param name="url">Url of image: string</param>
+        /// <returns>Barcode value: string</returns>
+        [HttpPost("~/GetBarcodeValueFromUrl")]
+        public string GetBarcodeValueFromUrl(string url)
         {
-            return url.Height.ToString();
+            var wc = new WebClient();
+            var bytes = wc.DownloadData(url);
+            var ms = new MemoryStream(bytes);
+            var barcode = BarcodeReader.QuicklyReadOneBarcode(ms, BarcodeEncoding.All, true);
+            return barcode.Value;
         }
     }
 }
