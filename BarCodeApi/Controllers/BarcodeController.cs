@@ -38,12 +38,15 @@ namespace BarCodeApi.Controllers
             var barcodeData = BarcodeWriter.CreateBarcode(barcodeNumber, BarcodeEncoding.Code128);
             return barcodeData.Value;
         }
-        //TODO: Finish this method
-        //TODO: Test, if this method works with images with objects on picture, exact barcode
+
         [HttpPost("~/GetBarcodeImageFromUrl")]
-        public string GetBarcodeImageFromUrl([FromBody]Bitmap url)
+        public string GetBarcodeImageFromUrl(string url)
         {
-            return url.Height.ToString();
+            var wc = new WebClient();
+            var bytes = wc.DownloadData(url);
+            var ms = new MemoryStream(bytes);
+            var barcode = BarcodeReader.QuicklyReadOneBarcode(ms, BarcodeEncoding.All, true);
+            return barcode.Value;
         }
     }
 }
