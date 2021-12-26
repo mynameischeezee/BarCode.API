@@ -21,7 +21,11 @@ namespace BarCodeApi.Controllers
         {
             _logger = logger;
         }
-        
+        /// <summary>
+        /// Generates barcode image from barcode number
+        /// </summary>
+        /// <param name="barcodeNumber">Barcode value as string</param>
+        /// <returns>Barcode image: IActionResult</returns>
         [HttpGet("~/GetBarcodeImage")]
         public IActionResult GetBarcodeImage(string barcodeNumber)
         {
@@ -30,7 +34,11 @@ namespace BarCodeApi.Controllers
             var barcodeImageBinary = barcodeData.ToJpegBinaryData();
             return File(barcodeImageBinary, "image/jpeg");
         }
-
+        /// <summary>
+        /// Generates barcode value from string
+        /// </summary>
+        /// <param name="barcodeNumber">Barcode value: string</param>
+        /// <returns>Barcode value: string</returns>
         [HttpGet("~/GetBarcodeData")]
         public string GetBarcodeData(string barcodeNumber)
         {
@@ -38,9 +46,13 @@ namespace BarCodeApi.Controllers
             var barcodeData = BarcodeWriter.CreateBarcode(barcodeNumber, BarcodeEncoding.Code128);
             return barcodeData.Value;
         }
-
-        [HttpPost("~/GetBarcodeImageFromUrl")]
-        public string GetBarcodeImageFromUrl(string url)
+        /// <summary>
+        /// Decode`s image with barcode and return it`s value
+        /// </summary>
+        /// <param name="url">Url of image: string</param>
+        /// <returns>Barcode value: string</returns>
+        [HttpPost("~/GetBarcodeValueFromUrl")]
+        public string GetBarcodeValueFromUrl(string url)
         {
             var wc = new WebClient();
             var bytes = wc.DownloadData(url);
