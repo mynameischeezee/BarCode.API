@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 using DataAccess.Daos;
+using DataAccess.Resource;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace DataAccess.Extentions

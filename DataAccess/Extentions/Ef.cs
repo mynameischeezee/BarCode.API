@@ -1,3 +1,4 @@
+using DataAccess.Resource;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -12,7 +13,7 @@ namespace DataAccess.Extentions
                 {
                     options.UseLazyLoadingProxies();
                     options.UseSqlite(
-                        @"DataSource=/Users/nazarkozhin/Desktop/barcode/BarCode.API/Barcode.db;"
+                        @$"DataSource={ResourceHelper.GetDbLocaion()}"
                     );
                     
                 });
