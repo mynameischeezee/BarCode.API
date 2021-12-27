@@ -1,8 +1,12 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BarCodeApi", "BarCodeApi\BarCodeApi.csproj", "{0ECA238C-AF55-4C78-AC4C-E748435A24F7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Barcode.API", "Barcode.API\Barcode.API.csproj", "{0ECA238C-AF55-4C78-AC4C-E748435A24F7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccess", "DataAccess\DataAccess.csproj", "{B9C4AA3E-C456-44DF-986D-E92F0DA3184B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Barcode.Services.Abstractions", "Barcode.Services.Abstractions\Barcode.Services.Abstractions.csproj", "{D99A988C-AAE6-4798-9E82-9D403A4333E6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Barcode.Services.Implementations", "Barcode.Services.Implementations\Barcode.Services.Implementations.csproj", "{4F8F8351-9A77-4C36-B9A5-9BA01452023B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -18,5 +22,13 @@ Global
 		{B9C4AA3E-C456-44DF-986D-E92F0DA3184B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B9C4AA3E-C456-44DF-986D-E92F0DA3184B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B9C4AA3E-C456-44DF-986D-E92F0DA3184B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D99A988C-AAE6-4798-9E82-9D403A4333E6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D99A988C-AAE6-4798-9E82-9D403A4333E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D99A988C-AAE6-4798-9E82-9D403A4333E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D99A988C-AAE6-4798-9E82-9D403A4333E6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4F8F8351-9A77-4C36-B9A5-9BA01452023B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4F8F8351-9A77-4C36-B9A5-9BA01452023B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4F8F8351-9A77-4C36-B9A5-9BA01452023B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4F8F8351-9A77-4C36-B9A5-9BA01452023B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

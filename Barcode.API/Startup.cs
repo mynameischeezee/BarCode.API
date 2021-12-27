@@ -40,7 +40,7 @@ namespace BarCodeApi
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo {Title = "BarCodeApi", Version = "v1"});
+                c.SwaggerDoc("v1", new OpenApiInfo {Title = "Barcode.API", Version = "v1"});
             });
             services.AddEf();
             services.Inject();
@@ -61,7 +61,7 @@ namespace BarCodeApi
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "BarCodeApi v1"));
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Barcode.API v1"));
             }
             
             app.UseHttpsRedirection();
