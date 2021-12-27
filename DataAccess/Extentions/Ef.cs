@@ -17,6 +17,7 @@ namespace DataAccess.Extentions
                     );
                     
                 });
+            // return services.AddDbContext<BarcodeContext>();
         }
     }
 }

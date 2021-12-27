@@ -9,6 +9,7 @@ namespace DataAccess
         public DbSet<Product> Products { get; set; }
         public DbSet<Comment> Comments { get; set; }
         public DbSet<Scan> Scans { get; set; }
+        public DbSet<Role> Roles { get; set; }
 
         public BarcodeContext(DbContextOptions<BarcodeContext> options)
             : base(options)
@@ -24,7 +25,7 @@ namespace DataAccess
         //
         // protected override void OnConfiguring(DbContextOptionsBuilder contextBuilder)
         // {
-        //     contextBuilder.UseSqlite(@"DataSource=/Users/nazarkozhin/Desktop/barcode/BarCode.API/Barcode.db;");
+        //     contextBuilder.UseSqlite(ResourceHelper.GetDbLocation());
         // }
         #endregion
         
@@ -36,6 +37,7 @@ namespace DataAccess
             modelBuilder.ApplyConfiguration(new ProductConfig());
             modelBuilder.ApplyConfiguration(new CommentProductConfig());
             modelBuilder.ApplyConfiguration(new UserProductConfig());
+            modelBuilder.ApplyConfiguration(new RoleConfig());
         }
     }
 }

@@ -1,7 +1,9 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using DataAccess.Daos;
 using DataAccess.Resource;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace DataAccess.Extentions
@@ -12,19 +14,27 @@ namespace DataAccess.Extentions
         {
             var provider = services.BuildServiceProvider();
             var context = provider.GetService<BarcodeContext>();
+            
+            //context.Database.Migrate();
 
-            var user = context.Users.First();
+            //var user = context.Users.First();
 
             // Product prod1;
-            //
+            
             // context.Products.Add(prod1 = new Product()
             //     {
-            //         Code = "code2",
+            //         Code = "code1",
             //         Name = "potato",
             //         OverallRatingSum = 0,
             //         CountOfRatings = 0
             //     }
             // );
+
+            // Role r1;
+            // context.Roles.Add(r1 = new Role()
+            // {
+            //     RoleName = "Customer"
+            // });
             //
             // context.Products.Add(new Product()
             //     {
@@ -39,6 +49,7 @@ namespace DataAccess.Extentions
             // {
             //     Name = "name",
             //     PassHash = "dsfdf23", 
+            //     Role = r1,
             //     Scans = new List<Scan>()
             //     {
             //         new Scan()
@@ -65,7 +76,7 @@ namespace DataAccess.Extentions
             //         ScanTime = DateTime.Now
             //     }
             // );
-            // context.SaveChanges();
+            //context.SaveChanges();
         }
     }
 }
