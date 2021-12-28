@@ -5,4 +5,8 @@
         <RootNamespace>Barcode.Services.Abstracitons</RootNamespace>
     </PropertyGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\DataAccess\DataAccess.csproj" />
+    </ItemGroup>
+
 </Project>

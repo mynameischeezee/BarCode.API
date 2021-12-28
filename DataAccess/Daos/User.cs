@@ -10,6 +10,8 @@ namespace DataAccess.Daos
         
         public string PassHash { get; set; }
         
+        public string PassSalt { get; set; }
+
         public int RoleId { get; set; }
         public virtual Role Role { get; set; }
         public virtual ICollection<Scan> Scans { get; set; }
@@ -21,6 +23,8 @@ namespace DataAccess.Daos
         {
             builder.HasKey(u => u.Id);
 
+            builder.HasIndex(u => u.Name);
+            
             builder.HasMany(u => u.Scans)
                 .WithOne(s => s.User)
                 .HasForeignKey(s => s.UserId)

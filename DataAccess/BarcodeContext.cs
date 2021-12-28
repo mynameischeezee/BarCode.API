@@ -1,4 +1,5 @@
 using DataAccess.Daos;
+using DataAccess.Resource;
 using Microsoft.EntityFrameworkCore;
 
 namespace DataAccess
@@ -25,7 +26,7 @@ namespace DataAccess
         //
         // protected override void OnConfiguring(DbContextOptionsBuilder contextBuilder)
         // {
-        //     contextBuilder.UseSqlite(ResourceHelper.GetDbLocation());
+        //     contextBuilder.UseSqlite(@"DataSource=/Users/nazarkozhin/Desktop/barcode/BarCode.API/DataAccess/Resource/Barcode.db;");
         // }
         #endregion
         
