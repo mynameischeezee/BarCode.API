@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Newtonsoft.Json;
 
 namespace DataAccess.Daos
 {
@@ -11,6 +12,7 @@ namespace DataAccess.Daos
         public int OverallRatingSum { get; set; }
         public int CountOfRatings { get; set; }
         
+        [JsonIgnore]
         public virtual ICollection<Scan> Scans { get; set; }
     }
 

@@ -12,7 +12,7 @@ namespace DataAccess.Daos
         
         public string PassSalt { get; set; }
 
-        public string Token { get; set; }
+        //public string Token { get; set; }
 
         public int RoleId { get; set; }
         public virtual Role Role { get; set; }
