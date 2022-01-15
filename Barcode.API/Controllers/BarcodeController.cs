@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Drawing.Imaging;
-using System.IO;
-using System.Linq;
-using System.Net;
+﻿using System.Threading.Tasks;
+using Barcode.Services.Abstracitons;
 using IronBarCode;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -16,10 +11,15 @@ namespace BarCodeApi.Controllers
     public class BarcodeController : ControllerBase
     {
         private readonly ILogger<BarcodeController> _logger;
+        private readonly IBarcodeConverter _converter;
+        private readonly IUserService _userService;
+        
 
-        public BarcodeController(ILogger<BarcodeController> logger)
+        public BarcodeController(ILogger<BarcodeController> logger, IBarcodeConverter converter, IUserService userService)
         {
             _logger = logger;
+            _converter = converter;
+            _userService = userService;
         }
         /// <summary>
         /// Generates barcode image from barcode number
@@ -54,11 +54,27 @@ namespace BarCodeApi.Controllers
         [HttpPost("~/GetBarcodeValueFromUrl")]
         public string GetBarcodeValueFromUrl(string url)
         {
-            var wc = new WebClient();
-            var bytes = wc.DownloadData(url);
-            var ms = new MemoryStream(bytes);
-            var barcode = BarcodeReader.QuicklyReadOneBarcode(ms, BarcodeEncoding.All, true);
-            return barcode.Value;
+            return _converter.Convert(url);
+        }
+
+        [HttpPost("~/SignIn")]
+        public async Task<IActionResult> SignIn([FromBody] AuthModel data)
+        {
+            //var res = _userService.SignIn(data.name, data.password);
+            return Ok(_userService.SignIn(data.name, data.password));
+        }
+
+        [HttpPost("~/SignUp")]
+        public IActionResult SignUp([FromBody] AuthModel data)
+        {
+            var res = _userService.SignUp(data.name, data.password);
+            return Ok(res);
+        }
+
+        public class AuthModel
+        {
+            public string name { get; set; }
+            public string password { get; set; }
         }
     }
 }

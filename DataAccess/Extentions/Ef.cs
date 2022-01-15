@@ -13,7 +13,7 @@ namespace DataAccess.Extentions
                 {
                     options.UseLazyLoadingProxies();
                     options.UseSqlite(
-                        @$"DataSource={ResourceHelper.GetDbLocation()}"
+                        @$"DataSource={ResourceHelper.GetDbLocation()};"
                     );
                     
                 });

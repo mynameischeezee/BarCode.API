@@ -1,7 +1,12 @@
+using Barcode.Services.Abstracitons;
+using Barcode.Services.Implementations;
+using DataAccess;
 using DataAccess.Extentions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -21,21 +26,9 @@ namespace BarCodeApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-        //     services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-        //         .AddJwtBearer(options => {  
-        //             options.TokenValidationParameters =   
-        //                 new TokenValidationParameters  
-        //                 {  
-        //                     ValidateIssuer = true,  
-        //                     ValidateAudience = true,  
-        //                     ValidateLifetime = true,  
-        //                     ValidateIssuerSigningKey = true,  
-        //
-        //                     ValidIssuer = "Fiver.Security.Bearer",  
-        //                     ValidAudience = "Fiver.Security.Bearer",
-        //                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("secrererert-dds-ss"))  
-        //                 };  
-        //         });
+            services.AddTransient<IHistoryService, HistoryService>();
+            services.AddTransient<IBarcodeConverter, BarcodeConverter>();
+            services.AddTransient<IUserService, UserService>();
             
             services.AddControllers();
             services.AddSwaggerGen(c =>
@@ -47,9 +40,11 @@ namespace BarCodeApi
 
             #region Database-Update (Just uncomment and run)
 
-            // var provider = services.BuildServiceProvider();
-            // var context = provider.GetService<BarcodeContext>();
-            // context.Database.Migrate();
+            //services.AddDbContext<BarcodeContext>();
+            //var provider = services.BuildServiceProvider();
+            //var context = provider.GetService<BarcodeContext>();
+            //context.Database.Migrate();
+            //context.SaveChanges();
 
             #endregion
         }
