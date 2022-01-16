@@ -29,6 +29,7 @@ namespace BarCodeApi
             services.AddTransient<IHistoryService, HistoryService>();
             services.AddTransient<IBarcodeConverter, BarcodeConverter>();
             services.AddTransient<IUserService, UserService>();
+            services.AddTransient<IProductService, ProductService>();
             
             services.AddControllers();
             services.AddSwaggerGen(c =>
@@ -37,7 +38,6 @@ namespace BarCodeApi
             });
             services.AddEf();
             services.Inject();
-
             #region Database-Update (Just uncomment and run)
 
             //services.AddDbContext<BarcodeContext>();
