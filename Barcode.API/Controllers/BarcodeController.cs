@@ -1,6 +1,11 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Drawing;
+using System.Linq;
+using System.Net;
+using System.Threading.Tasks;
 using Barcode.Services.Abstracitons;
 using IronBarCode;
+using System.Web;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
@@ -56,6 +61,18 @@ namespace BarCodeApi.Controllers
         {
             return _converter.Convert(url);
         }
+        
+        [HttpPost("~/GetBarcodeFromImage")]
+        public async Task<IActionResult> GetBarcodeFromImage()
+        {
+            
+            var res1 = HttpContext.Request.Form.Files;
+            using var buffer = new System.IO.MemoryStream();
+            res1.FirstOrDefault().CopyTo(buffer);
+            //var res = this.ControllerContext.HttpContext.Request.Body;
+            var res = _converter.Convert(buffer);
+            return Ok(res);
+        }
 
         [HttpPost("~/SignIn")]
         public async Task<IActionResult> SignIn([FromBody] AuthModel data)
@@ -75,6 +92,11 @@ namespace BarCodeApi.Controllers
         {
             public string name { get; set; }
             public string password { get; set; }
+        }
+
+        public class UploadImageModel
+        {
+            public string Image { get; set; }
         }
     }
 }
