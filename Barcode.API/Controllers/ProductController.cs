@@ -22,7 +22,7 @@ namespace BarCodeApi.Controllers
         }
         
         [HttpGet("~/GetProduct")]
-        public string GetProdct(string barcodeNumber)
+        public string GetProduct(string barcodeNumber)
         {
             Product product = _productService.Get(barcodeNumber);
             return JsonConvert.SerializeObject(product);

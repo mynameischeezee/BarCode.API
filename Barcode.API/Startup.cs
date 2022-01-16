@@ -30,12 +30,14 @@ namespace BarCodeApi
             services.AddTransient<IBarcodeConverter, BarcodeConverter>();
             services.AddTransient<IUserService, UserService>();
             services.AddTransient<IProductService, ProductService>();
-            
+            services.AddTransient<ICommentService, CommentService>();
+
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo {Title = "Barcode.API", Version = "v1"});
             });
+            
             services.AddEf();
             services.Inject();
             #region Database-Update (Just uncomment and run)
