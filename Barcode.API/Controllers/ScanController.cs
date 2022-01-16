@@ -15,13 +15,14 @@ namespace BarCodeApi.Controllers
         private readonly IScanService _scanService;
         private readonly IBarcodeConverter _barcodeConverter;
         
-        public ScanController(IScanService scanService, IBarcodeConverter barcodeConverter)
+        public ScanController(IScanService scanService, IBarcodeConverter barcodeConverter, ILogger<ProductController> logger)
         {
             _barcodeConverter = barcodeConverter;
+            _logger = logger;
             _scanService = scanService;
         }
-        [HttpPost("~/AddScanUrl/{userName}/{url}")]
-        public async Task<ActionResult> AddScan(string userName, string url)
+        [HttpPost("~/AddScanUrl/{userName}")]
+        public ActionResult AddScan(string userName, string url)
         {
             var barcode = _barcodeConverter.Convert(url);
             var scan = _scanService.AddScan(barcode, userName);
