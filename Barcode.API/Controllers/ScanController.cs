@@ -34,5 +34,14 @@ namespace BarCodeApi.Controllers
                 return Ok(scan.Id);
             };
         }
+        
+        [HttpPost("~/AddScan/{userName}/{barcode}")]
+        public async Task<ActionResult> AddScan(string userName, string barcode)
+        {
+            var scan = _scanService.AddScan(barcode, userName);
+            return Ok(scan.Id);
+        }
+        
+        
     }
 }

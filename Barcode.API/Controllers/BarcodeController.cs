@@ -72,25 +72,6 @@ namespace BarCodeApi.Controllers
             return Ok(res);
         }
 
-        [HttpPost("~/SignIn")]
-        public async Task<IActionResult> SignIn([FromBody] AuthModel1 data)
-        {
-            //var res = _userService.SignIn(data.name, data.password);
-            return Ok(_userService.SignIn(data.name, data.password));
-        }
-
-        [HttpPost("~/SignUp")]
-        public IActionResult SignUp([FromBody] AuthModel1 data)
-        {
-            var res = _userService.SignUp(data.name, data.password);
-            return Ok(res);
-        }
-
-        public class AuthModel1
-        {
-            public string name { get; set; }
-            public string password { get; set; }
-        }
 
         public class UploadImageModel
         {
