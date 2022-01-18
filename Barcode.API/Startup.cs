@@ -31,6 +31,8 @@ namespace BarCodeApi
             services.AddTransient<IUserService, UserService>();
             services.AddTransient<IProductService, ProductService>();
             services.AddTransient<ICommentService, CommentService>();
+            services.AddTransient<ICommentValidator, CommentValidator>();
+            services.AddTransient<IRatingService, RatingService>();
 
             services.AddControllers();
             services.AddSwaggerGen(c =>

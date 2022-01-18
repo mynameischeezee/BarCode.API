@@ -15,7 +15,6 @@ namespace DataAccess.Extentions
                     options.UseSqlite(
                         @$"DataSource={ResourceHelper.GetDbLocation()};"
                     );
-                    
                 });
             // return services.AddDbContext<BarcodeContext>();
         }

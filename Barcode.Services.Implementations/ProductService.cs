@@ -9,7 +9,6 @@ namespace Barcode.Services.Implementations
     public class ProductService : IProductService
     {
         private readonly BarcodeContext _context;
-
         public ProductService(BarcodeContext context)
         {
             _context = context;
