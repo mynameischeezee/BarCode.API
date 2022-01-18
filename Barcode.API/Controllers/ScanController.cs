@@ -20,6 +20,13 @@ namespace BarCodeApi.Controllers
             _barcodeConverter = barcodeConverter;
             _scanService = scanService;
         }
+        [HttpPost("~/AddScanUrl/{userName}/{url}")]
+        public async Task<ActionResult> AddScan(string userName, string url)
+        {
+            var barcode = _barcodeConverter.Convert(url);
+            var scan = _scanService.AddScan(barcode, userName);
+            return Ok(scan.Id);
+        }
         
         [HttpPost("~/AddScan/{userName}")]
         public async Task<ActionResult> AddScan(string userName)
@@ -35,12 +42,12 @@ namespace BarCodeApi.Controllers
             };
         }
         
-        [HttpPost("~/AddScan/{userName}/{barcode}")]
-        public async Task<ActionResult> AddScan(string userName, string barcode)
-        {
-            var scan = _scanService.AddScan(barcode, userName);
-            return Ok(scan.Id);
-        }
+        // [HttpPost("~/AddScan/{userName}/{barcode}")]
+        // public async Task<ActionResult> AddScan(string userName, string barcode)
+        // {
+        //     var scan = _scanService.AddScan(barcode, userName);
+        //     return Ok(scan.Id);
+        // }
         
         
     }
