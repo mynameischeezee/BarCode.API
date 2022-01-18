@@ -65,30 +65,28 @@ namespace BarCodeApi.Controllers
         [HttpPost("~/GetBarcodeFromImage")]
         public async Task<IActionResult> GetBarcodeFromImage()
         {
-            
             var res1 = HttpContext.Request.Form.Files;
             using var buffer = new System.IO.MemoryStream();
             res1.FirstOrDefault().CopyTo(buffer);
-            //var res = this.ControllerContext.HttpContext.Request.Body;
             var res = _converter.Convert(buffer);
             return Ok(res);
         }
 
         [HttpPost("~/SignIn")]
-        public async Task<IActionResult> SignIn([FromBody] AuthModel data)
+        public async Task<IActionResult> SignIn([FromBody] AuthModel1 data)
         {
             //var res = _userService.SignIn(data.name, data.password);
             return Ok(_userService.SignIn(data.name, data.password));
         }
 
         [HttpPost("~/SignUp")]
-        public IActionResult SignUp([FromBody] AuthModel data)
+        public IActionResult SignUp([FromBody] AuthModel1 data)
         {
             var res = _userService.SignUp(data.name, data.password);
             return Ok(res);
         }
 
-        public class AuthModel
+        public class AuthModel1
         {
             public string name { get; set; }
             public string password { get; set; }

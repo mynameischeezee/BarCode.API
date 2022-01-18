@@ -21,7 +21,27 @@ namespace Barcode.Services.Implementations
         {
             _context = context;
         }
-        
+
+
+        public void AddUser(string name, string password)
+        {
+            var salt = Hasher.GetSalt();
+            _context.Users.Add(new User()
+                {RoleId = 1, Name = name, PassHash = Hasher.GetHash(salt, password), PassSalt = salt});
+            
+            _context.SaveChanges();
+        }
+
+        public async Task<int> GetUser(string name)
+        {
+            var user = _context.Users.FirstOrDefault(u => u.Name == name);
+            
+            if (user == null)
+                throw new ArgumentException($"no user with name {name} found");
+                
+            return user.Id;
+        }
+
         public Task<string> SignIn(string name, string password)
         {
             var user = _context.Users.SingleOrDefault(u => u.Name == name);

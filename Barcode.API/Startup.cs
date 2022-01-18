@@ -1,6 +1,7 @@
 using Barcode.Services.Abstracitons;
 using Barcode.Services.Implementations;
 using DataAccess;
+using DataAccess.Daos;
 using DataAccess.Extentions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -30,7 +31,7 @@ namespace BarCodeApi
             services.AddTransient<IBarcodeConverter, BarcodeConverter>();
             services.AddTransient<IUserService, UserService>();
             services.AddTransient<IProductService, ProductService>();
-            
+            services.AddTransient<IScanService, ScanService>();
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {

@@ -11,9 +11,6 @@ namespace DataAccess.Daos
         public string PassHash { get; set; }
         
         public string PassSalt { get; set; }
-
-        public string Token { get; set; }
-
         public int RoleId { get; set; }
         public virtual Role Role { get; set; }
         public virtual ICollection<Scan> Scans { get; set; }
